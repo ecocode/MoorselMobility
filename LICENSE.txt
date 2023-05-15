@@ -1,0 +1,4 @@
+All Telraam data (csv files in this project) are available under a CC-BY-NC license (https://creativecommons.org/licenses/by-nc/4.0/legalcode).
+You can find more info on the webpage https://telraam.helpspace-docs.io/article/9/telraam-data-license-what-can-i-do-with-the-telraam-data.
+
+The code and other files are also licensed under the same license.
