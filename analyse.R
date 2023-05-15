@@ -7,7 +7,7 @@ library(purrr)
 unlink("*.png")
 
 # data quality filter by telraam. volgens telraam moet dit in klaarlichte dag > 0.5
-min_uptime <- 0.05
+min_uptime <- 0.1
 
 dataLeeuwerikenlaan <- read.csv("leeuwerikenlaan-totaal.csv",                 header=TRUE, stringsAsFactors=FALSE)
 dataLeeuwerikenlaan <- dataLeeuwerikenlaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime )
@@ -46,6 +46,8 @@ dataVinkenlaan$date <- parse_iso_8601(dataVinkenlaan$date)
 ## str(spitsMorgen)
 
 allData <- full_join(full_join(full_join(full_join(full_join(dataBoslaan,dataMoorselstraat,by=c("date")),dataGroenlaan,by=c("date")),dataNachtegalenlaan,by=c("date")),dataVinkenlaan,by=c("date")),dataLeeuwerikenlaan,by=c("date"))
+
+allData$date <- with_tz(allData$date,tzone="Europe/Brussels")
 
 ## add column with FASE depending on date
 # eerste data in Moorselstraat begint 13 oktober 2022
@@ -106,8 +108,8 @@ ggplot(data=totaalPerUurDag,aes(x=hour,y=sum_totaal_per_uur))+geom_bar(stat="ide
     labs(title="Gemiddelde verkeersdruk in Moorsel per uur",x="uur",y="verkeersdruk per wageneenheid")
 ggsave(device=png,filename="spitsTikkingen.png",dpi=300)
 
-spitsMorgen <- filter(weekData, between(hour,7,9))
-aantalUren <- 3  # gebruikt om slechte data te filteren
+spitsMorgen <- filter(weekData, between(hour,8,8))
+aantalUren <- 1  # gebruikt om slechte data te filteren
 ## str(spitsMorgen)
 
 
@@ -167,7 +169,7 @@ plotit <- function (colA,colB,titelColA,titelColB) {
         # geom_smooth(method='loess',span=50,se=FALSE) +
         theme(legend.position="bottom",legend.direction = "vertical") +
         labs(color="Periode", title=paste(titelColA," vs ",titelColB,sep=""),
-             subtitle="verkeersdruk tss 7u en 10u in wageneenheden per uur",
+             subtitle="verkeersdruk tss 8u en 9u in wageneenheden per uur",
              caption="Data source: telraam.net",
              x=titelColB,y=titelColA)
     ggsave(device=png,filename=paste(paste(titelColA,titelColB,sep="_vs_"),".png",sep=""),dpi=300,height=10)
