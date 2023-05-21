@@ -10,33 +10,33 @@ unlink("*.png")
 min_uptime <- 0.1
 
 dataLeeuwerikenlaan <- read.csv("leeuwerikenlaan-totaal.csv",                 header=TRUE, stringsAsFactors=FALSE)
-dataLeeuwerikenlaan <- dataLeeuwerikenlaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime )
-dataLeeuwerikenlaan <- dataLeeuwerikenlaan %>% rename ( leeuw_car_lft=car_lft, leeuw_car_rgt=car_rgt, leeuw_heavy_lft=heavy_lft, leeuw_heavy_rgt=heavy_rgt )
+dataLeeuwerikenlaan <- dataLeeuwerikenlaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime, v85 )
+dataLeeuwerikenlaan <- dataLeeuwerikenlaan %>% rename ( leeuw_car_lft=car_lft, leeuw_car_rgt=car_rgt, leeuw_heavy_lft=heavy_lft, leeuw_heavy_rgt=heavy_rgt, leeuw_v85=v85 )
 dataLeeuwerikenlaan$date <- parse_iso_8601(dataLeeuwerikenlaan$date)
 
 dataBoslaan <- read.csv("boslaan-totaal.csv",                 header=TRUE, stringsAsFactors=FALSE)
-dataBoslaan <- dataBoslaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime )
-dataBoslaan <- dataBoslaan %>% rename ( bos_car_lft=car_lft, bos_car_rgt=car_rgt, bos_heavy_lft=heavy_lft, bos_heavy_rgt=heavy_rgt )
+dataBoslaan <- dataBoslaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime, v85 )
+dataBoslaan <- dataBoslaan %>% rename ( bos_car_lft=car_lft, bos_car_rgt=car_rgt, bos_heavy_lft=heavy_lft, bos_heavy_rgt=heavy_rgt, bos_v85=v85 )
 dataBoslaan$date <- parse_iso_8601(dataBoslaan$date)
 
 dataGroenlaan <- read.csv("groenlaan-totaal.csv",             header=TRUE, stringsAsFactors=FALSE)
-dataGroenlaan <- dataGroenlaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime )
-dataGroenlaan <- dataGroenlaan %>% rename ( groen_car_lft=car_lft, groen_car_rgt=car_rgt, groen_heavy_lft=heavy_lft, groen_heavy_rgt=heavy_rgt )
+dataGroenlaan <- dataGroenlaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime, v85 )
+dataGroenlaan <- dataGroenlaan %>% rename ( groen_car_lft=car_lft, groen_car_rgt=car_rgt, groen_heavy_lft=heavy_lft, groen_heavy_rgt=heavy_rgt, groen_v85=v85 )
 dataGroenlaan$date <- parse_iso_8601(dataGroenlaan$date)
 
 dataMoorselstraat <- read.csv("moorselstraat-totaal.csv",     header=TRUE, stringsAsFactors=FALSE)
-dataMoorselstraat <- dataMoorselstraat %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime )
-dataMoorselstraat <- dataMoorselstraat %>% rename ( moorsstr_car_lft=car_lft, moorsstr_car_rgt=car_rgt, moorsstr_heavy_lft=heavy_lft, moorsstr_heavy_rgt=heavy_rgt )
+dataMoorselstraat <- dataMoorselstraat %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime, v85 )
+dataMoorselstraat <- dataMoorselstraat %>% rename ( moorsstr_car_lft=car_lft, moorsstr_car_rgt=car_rgt, moorsstr_heavy_lft=heavy_lft, moorsstr_heavy_rgt=heavy_rgt, moorsstr_v85=v85 )
 dataMoorselstraat$date <- parse_iso_8601(dataMoorselstraat$date)
 
 dataNachtegalenlaan <- read.csv("nachtegalenlaan-totaal.csv", header=TRUE, stringsAsFactors=FALSE)
-dataNachtegalenlaan <- dataNachtegalenlaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime )
-dataNachtegalenlaan <- dataNachtegalenlaan %>% rename ( nacht_car_lft=car_lft, nacht_car_rgt=car_rgt, nacht_heavy_lft=heavy_lft, nacht_heavy_rgt=heavy_rgt )
+dataNachtegalenlaan <- dataNachtegalenlaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime, v85 )
+dataNachtegalenlaan <- dataNachtegalenlaan %>% rename ( nacht_car_lft=car_lft, nacht_car_rgt=car_rgt, nacht_heavy_lft=heavy_lft, nacht_heavy_rgt=heavy_rgt, nacht_v85=v85 )
 dataNachtegalenlaan$date <- parse_iso_8601(dataNachtegalenlaan$date)
 
 dataVinkenlaan <- read.csv("vinkenlaan-totaal.csv",           header=TRUE, stringsAsFactors=FALSE)
-dataVinkenlaan <- dataVinkenlaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime )
-dataVinkenlaan <- dataVinkenlaan %>% rename ( vink_car_lft=car_lft, vink_car_rgt=car_rgt, vink_heavy_lft=heavy_lft, vink_heavy_rgt=heavy_rgt )
+dataVinkenlaan <- dataVinkenlaan %>% filter(uptime>=min_uptime) %>% select ( date, car_lft, car_rgt, heavy_lft, heavy_rgt, uptime, v85 )
+dataVinkenlaan <- dataVinkenlaan %>% rename ( vink_car_lft=car_lft, vink_car_rgt=car_rgt, vink_heavy_lft=heavy_lft, vink_heavy_rgt=heavy_rgt, vink_v85=v85 )
 dataVinkenlaan$date <- parse_iso_8601(dataVinkenlaan$date)
 
 ## str(dataMoorselstraat)
@@ -92,7 +92,8 @@ allData <- allData %>% rowwise() %>% mutate(totaal_vink_nacht_bos = sum(totaal_n
 allData <- allData %>% rowwise() %>% mutate(totaal_moorsstr_groen = sum(totaal_moorsstr, totaal_groen,na.rm=FALSE))
 allData <- allData %>% rowwise() %>% mutate(totaal = sum(totaal_nacht, totaal_leeuw, totaal_vink, totaal_groen, totaal_bos, totaal_moorsstr,na.rm=FALSE))
 allData <- allData %>% mutate(hour = hour(date))
-allData <- allData %>% select(fase,date,hour,totaal_nacht,totaal_leeuw,totaal_vink,totaal_groen,totaal_bos,totaal_moorsstr,totaal_vink_nacht,totaal_moorsstr_groen,totaal_vink_nacht_bos,totaal)
+allData <- allData %>% select(fase,date,hour,totaal_nacht,totaal_leeuw,totaal_vink,totaal_groen,totaal_bos,totaal_moorsstr,totaal_vink_nacht,totaal_moorsstr_groen,totaal_vink_nacht_bos,totaal,
+                              moorsstr_v85,groen_v85,bos_v85,nacht_v85,leeuw_v85,vink_v85)
 ############# UITFILTEREN ENKEL WEEKDAGEN NEMEN !!!!
 weekData <- filter(allData, wday(date, week_start=1)<=5)
 
@@ -201,9 +202,9 @@ plotit(totaal_moorsstr_groen,totaal_vink_nacht_bos,"Moorselstraat+Groenlaan","Bo
 plotitGemiddelde <- function () {
     for (xfase in 1:6) {
 
-        print ("###############################################")
-        print(select(weekData %>% filter(fase==xfase) %>% filter(between(hour,5,17)) %>% filter(totaal!=0),date,hour,fase,totaal_moorsstr,totaal_nacht))
-        print ("###############################################")
+        ## print ("###############################################")
+        ## print(select(weekData %>% filter(fase==xfase) %>% filter(between(hour,5,17)) %>% filter(totaal!=0),date,hour,fase,totaal_moorsstr,totaal_nacht))
+        ## print ("###############################################")
 
         totaalPerUurDag <- weekData %>% filter(fase==xfase) %>% filter(between(hour,5,17)) %>% filter(totaal>=400) %>% group_by(uur=hour) %>%
             summarise(moorsstr=ifelse(mean(totaal_moorsstr,na.rm=T)>0,mean(totaal_moorsstr,na.rm=T),NA),
@@ -213,8 +214,8 @@ plotitGemiddelde <- function () {
                       vinklaan=ifelse(mean(totaal_vink,na.rm=T)>0,mean(totaal_vink,na.rm=T),NA),
                       leeuwlaan=ifelse(mean(totaal_leeuw,na.rm=T)>0,mean(totaal_leeuw,na.rm=T),NA),
                       .groups='drop') %>% select(uur,moorsstr,boslaan,groenlaan,nachtlaan,vinklaan,leeuwlaan) %>% as.data.frame()
-        print(select(totaalPerUurDag,uur,moorsstr,nachtlaan))
-        str(totaalPerUurDag)
+        ## print(select(totaalPerUurDag,uur,moorsstr,nachtlaan))
+        ## str(totaalPerUurDag)
         ggplot(totaalPerUurDag,aes(x=uur)) +
             scale_x_continuous(breaks=seq(0,24,1)) +
             geom_line(aes(y=moorsstr,colour="Moorselstraat"),size=1) +
@@ -234,6 +235,30 @@ plotitGemiddelde <- function () {
 }
 
 plotitGemiddelde()
+
+plotSpeedVSwageneenheden <- function ( totaal_wagens, v85, naam ) {
+    plotData <- allData %>% select(date,totaal_wagens={{totaal_wagens}},v85={{v85}})
+
+    ggplot(plotData,aes(y=v85,x=totaal_wagens)) +
+        scale_y_continuous(breaks=seq(0,1000,10)) +
+        scale_x_continuous(breaks=seq(0,5000,100)) +
+        geom_point(alpha=0.15,size=4,show.legend = FALSE,color="magenta") +
+        geom_hline(yintercept = mean(plotData$v85,na.rm=TRUE), color="darkgreen") +
+        ## geom_smooth(method='loess',se=FALSE,span=40,color="blue") +
+        ## geom_smooth(method="lm",se=TRUE,level=0.7,formula = y ~ splines::bs(x, 3)) +
+        ylab("v85 (km/h)") + xlab("Wageneenheden per uur") +
+        ggtitle(paste(naam, "- v85 vs wageneenheden") , subtitle="alle uren van alle dagen in alle periodes") +
+        labs(caption="Data source: telraam.net") +
+        coord_cartesian(ylim=c(0,120), xlim=c(0,800))
+    ggsave(device=png,filename=paste("v85-",naam,".png",sep=""),dpi=300,height=10)
+}
+
+plotSpeedVSwageneenheden( totaal_moorsstr, moorsstr_v85, "Moorselstraat")
+plotSpeedVSwageneenheden( totaal_nacht,    nacht_v85,    "Nachtegalenlaan")
+plotSpeedVSwageneenheden( totaal_vink,     vink_v85,     "Vinkenlaan")
+plotSpeedVSwageneenheden( totaal_leeuw,    leeuw_v85,    "Leeuwerikenlaan")
+plotSpeedVSwageneenheden( totaal_groen,    groen_v85,    "Groenlaan")
+plotSpeedVSwageneenheden( totaal_bos,      bos_v85,      "Boslaan")
 
 ## avondplot
 ## ggplot(spitsAvond,aes(y=totaal_moorsstr,x=totaal_nacht)) + geom_point(color=fase_colors[spitsAvond$fase],alpha=0.4,size=5) + geom_smooth(method='lm') # + xlim(0,400) + ylim(0,400)
